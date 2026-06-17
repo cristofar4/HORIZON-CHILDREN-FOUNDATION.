@@ -47,7 +47,7 @@ export function Navbar() {
       <div className="container-x">
         <nav
           className={cn(
-            'flex items-center justify-between gap-6 rounded-full px-4 py-2.5 transition-all duration-500 ease-horizon sm:px-5',
+            'flex items-center justify-between gap-3 rounded-full px-4 py-2.5 transition-all duration-500 ease-horizon sm:px-5',
             scrolled
               ? 'glass border border-cream-300/70 shadow-soft'
               : 'border border-transparent',
@@ -55,13 +55,13 @@ export function Navbar() {
         >
           <Logo />
 
-          <ul className="hidden items-center gap-0.5 xl:flex">
+          <ul className="hidden flex-1 items-center justify-center gap-0.5 xl:flex 2xl:gap-1">
             {mainNav.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
                   className={cn(
-                    'relative rounded-full px-3 py-2 text-[0.92rem] font-medium transition-colors duration-300',
+                    'relative block whitespace-nowrap rounded-full px-3 py-2 text-[0.9rem] font-medium transition-colors duration-300 2xl:px-3.5',
                     isActive(link.href)
                       ? 'text-horizon-700'
                       : 'text-ink-soft hover:text-ink',

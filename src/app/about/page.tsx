@@ -127,6 +127,7 @@ export default function AboutPage() {
                     alt={`Portrait of ${leader.name}`}
                     seed={photos[leader.photo].seed}
                     tone={photos[leader.photo].tone}
+                    figure={leader.figure}
                     className="h-full w-full transition-transform duration-[1.4s] ease-horizon group-hover:scale-[1.05]"
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />

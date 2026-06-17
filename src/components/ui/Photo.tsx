@@ -31,7 +31,45 @@ function hash(seed: string): number {
   return (h >>> 0) / 4294967295;
 }
 
-function GenerativeScene({ seed, tone }: { seed: string; tone: PhotoTone }) {
+export type FigureKind = 'female' | 'male' | 'child';
+
+/** A tasteful head and shoulders silhouette so portrait placeholders always read
+ * as a person of the right gender, matching the name they accompany. */
+function Figure({ kind, color }: { kind: FigureKind; color: string }) {
+  const headY = kind === 'child' ? 46 : 43;
+  const headR = kind === 'child' ? 12.5 : 14.5;
+  return (
+    <g fill={color}>
+      {/* hair framing, varies subtly by figure */}
+      {kind === 'female' && (
+        <>
+          <path
+            d={`M${50 - headR - 3} ${headY + 3} a ${headR + 3} ${headR + 5} 0 1 1 ${(headR + 3) * 2} 0 Z`}
+            opacity="0.92"
+          />
+          {/* soft hair falling along the sides of the face */}
+          <path
+            d={`M${50 - headR - 3} ${headY + 1} q -2 12 3 18 q 3 -3 3 -9 q -3 -4 -3 -9 Z`}
+            opacity="0.92"
+          />
+          <path
+            d={`M${50 + headR + 3} ${headY + 1} q 2 12 -3 18 q -3 -3 -3 -9 q 3 -4 3 -9 Z`}
+            opacity="0.92"
+          />
+        </>
+      )}
+      {kind === 'male' && (
+        <path d={`M${50 - headR} ${headY - 3} q ${headR} -13 ${headR * 2} 0 q -${headR} -7 -${headR * 2} 0 Z`} opacity="0.9" />
+      )}
+      <circle cx="50" cy={headY} r={headR} />
+      <path
+        d={`M${kind === 'child' ? 30 : 24} 100 C ${kind === 'child' ? 30 : 24} ${kind === 'child' ? 82 : 78}, 38 ${headY + headR + 6}, 50 ${headY + headR + 6} C 62 ${headY + headR + 6}, ${kind === 'child' ? 70 : 76} ${kind === 'child' ? 82 : 78}, ${kind === 'child' ? 70 : 76} 100 Z`}
+      />
+    </g>
+  );
+}
+
+function GenerativeScene({ seed, tone, figure }: { seed: string; tone: PhotoTone; figure?: FigureKind }) {
   const p = TONES[tone];
   const r = hash(seed);
   const r2 = hash(seed + 'x');
@@ -57,6 +95,10 @@ function GenerativeScene({ seed, tone }: { seed: string; tone: PhotoTone }) {
           <stop offset="60%" stopColor={p.accent} stopOpacity="0.35" />
           <stop offset="100%" stopColor={p.accent} stopOpacity="0" />
         </radialGradient>
+        <radialGradient id={`${gid}-halo`} cx="50%" cy="42%" r="58%">
+          <stop offset="0%" stopColor={p.glow} stopOpacity="0.65" />
+          <stop offset="100%" stopColor={p.glow} stopOpacity="0" />
+        </radialGradient>
       </defs>
       <rect width="100" height="100" fill={`url(#${gid}-bg)`} />
       <circle cx={sun} cy={28 + r2 * 26} r={26 + r3 * 12} fill={`url(#${gid}-sun)`} />
@@ -72,6 +114,14 @@ function GenerativeScene({ seed, tone }: { seed: string; tone: PhotoTone }) {
         fill={p.from}
         opacity="0.5"
       />
+      {figure && (
+        <>
+          <rect width="100" height="100" fill={`url(#${gid}-halo)`} />
+          <g opacity="0.62">
+            <Figure kind={figure} color="#13243A" />
+          </g>
+        </>
+      )}
     </svg>
   );
 }
@@ -81,6 +131,7 @@ export type PhotoProps = {
   alt: string;
   seed: string;
   tone?: PhotoTone;
+  figure?: FigureKind;
   className?: string;
   imgClassName?: string;
   priority?: boolean;
@@ -99,6 +150,7 @@ export function Photo({
   alt,
   seed,
   tone = 'horizon',
+  figure,
   className,
   imgClassName,
   priority = false,
@@ -117,7 +169,7 @@ export function Photo({
         className,
       )}
     >
-      <GenerativeScene seed={seed} tone={tone} />
+      <GenerativeScene seed={seed} tone={tone} figure={figure} />
 
       {src && !failed && (
         // eslint-disable-next-line @next/next/no-img-element

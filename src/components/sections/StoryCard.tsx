@@ -21,6 +21,7 @@ export function StoryCard({ story, className }: { story: Story; className?: stri
           alt={photo.alt}
           seed={photo.seed}
           tone={photo.tone}
+          figure={story.figure}
           className="h-full w-full transition-transform duration-[1.4s] ease-horizon group-hover:scale-[1.05]"
           sizes="(max-width: 768px) 100vw, 33vw"
           overlay

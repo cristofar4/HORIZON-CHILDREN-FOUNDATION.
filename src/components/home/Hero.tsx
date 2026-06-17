@@ -5,16 +5,36 @@ import Link from 'next/link';
 import { gsap, prefersReducedMotion } from '@/lib/gsap';
 import { HeroScene } from '@/components/home/HeroScene';
 import { Magnetic } from '@/components/ui/Magnetic';
-import { Heart, ArrowRight, Play, ChevronDown } from '@/components/ui/icons';
+import { Heart, ArrowRight, Play } from '@/components/ui/icons';
+import { cn } from '@/lib/utils';
+
+/**
+ * Real cinematic footage for the hero.
+ *
+ * The first source is a local file you can drop in at public/hero.mp4 to use
+ * your own footage. If it is absent, the browser falls back to the relevant
+ * stock clip, and if no video can play at all, the hand built scene below shows
+ * instead, so the hero is always cinematic and never breaks.
+ */
+const VIDEO_SOURCES = [
+  '/hero.mp4',
+  'https://assets.mixkit.co/videos/preview/mixkit-little-girl-running-through-a-field-of-flowers-4565-large.mp4',
+];
 
 export function Hero() {
   const overlay = useRef<HTMLDivElement>(null);
   const replayRef = useRef<(() => void) | null>(null);
   const [hasReplay, setHasReplay] = useState(false);
+  const [allowVideo, setAllowVideo] = useState(false);
+  const [videoActive, setVideoActive] = useState(false);
 
   const onReady = useCallback((replay: () => void) => {
     replayRef.current = replay;
     setHasReplay(true);
+  }, []);
+
+  useEffect(() => {
+    if (!prefersReducedMotion()) setAllowVideo(true);
   }, []);
 
   useEffect(() => {
@@ -35,8 +55,7 @@ export function Hero() {
         .to(q('.hero-line'), { opacity: 1, y: 0, stagger: 0.12 }, 0.5)
         .to(q('.hero-sub'), { opacity: 1, y: 0 }, 1.1)
         .to(q('.hero-cta'), { opacity: 1, y: 0, stagger: 0.1 }, 1.3)
-        .to(q('.hero-trust'), { opacity: 1, y: 0 }, 1.7)
-        .to(q('.hero-cue'), { opacity: 1, y: 0 }, 2);
+        .to(q('.hero-trust'), { opacity: 1, y: 0 }, 1.7);
     }, el);
 
     return () => ctx.revert();
@@ -44,24 +63,47 @@ export function Hero() {
 
   return (
     <section className="relative isolate flex min-h-[100svh] flex-col justify-center overflow-hidden bg-horizon-950">
+      {/* Cinematic scene (always present, acts as the video fallback) */}
       <HeroScene onReady={onReady} />
 
-      {/* Legibility scrims */}
+      {/* Real video, fades in over the scene when it can play */}
+      {allowVideo && (
+        <video
+          className={cn(
+            'absolute inset-0 z-[1] h-full w-full object-cover transition-opacity duration-[1500ms] ease-horizon',
+            videoActive ? 'opacity-100' : 'opacity-0',
+          )}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          onCanPlay={() => setVideoActive(true)}
+          onError={() => setVideoActive(false)}
+          aria-hidden="true"
+        >
+          {VIDEO_SOURCES.map((src) => (
+            <source key={src} src={src} type="video/mp4" />
+          ))}
+        </video>
+      )}
+
+      {/* Legibility scrims (above the video) */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-horizon-950/85 via-horizon-950/35 to-transparent"
+        className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-r from-horizon-950/85 via-horizon-950/40 to-horizon-950/10"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-horizon-950/70 to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 z-[2] h-48 bg-gradient-to-b from-horizon-950/70 to-transparent"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-horizon-950/60 to-transparent"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-44 bg-gradient-to-t from-horizon-950/75 to-transparent"
       />
 
       {/* Content */}
-      <div ref={overlay} className="container-x relative z-10 w-full pb-24 pt-28">
+      <div ref={overlay} className="container-x relative z-10 w-full pb-20 pt-28">
         <div className="max-w-2xl">
           <p data-animate className="hero-eyebrow eyebrow !text-dawn-200 [&::before]:bg-dawn-300/70">
             Horizon Children Foundation
@@ -79,7 +121,7 @@ export function Hero() {
             </span>
           </h1>
 
-          <p data-animate className="hero-sub mt-7 max-w-xl text-lg leading-relaxed text-cream-200/85">
+          <p data-animate className="hero-sub mt-7 max-w-xl text-lg leading-relaxed text-cream-200/90">
             From a street corner at midnight to a warm bed by sunrise. We give orphaned and
             vulnerable children a safe home, an education, and the loving care they need to flourish.
           </p>
@@ -94,12 +136,12 @@ export function Hero() {
             <Link
               href="/volunteer"
               data-animate
-              className="hero-cta btn-light px-7 py-4 text-base"
+              className="hero-cta btn-light group px-7 py-4 text-base"
             >
               Become a volunteer
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
-            {hasReplay && (
+            {hasReplay && !videoActive && (
               <button
                 type="button"
                 data-animate
@@ -114,7 +156,7 @@ export function Hero() {
 
           <div
             data-animate
-            className="hero-trust mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-cream-200/70"
+            className="hero-trust mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-cream-200/80"
           >
             <span className="inline-flex items-center gap-2">
               <span className="h-2 w-2 rounded-full bg-dawn-300" />
@@ -126,15 +168,6 @@ export function Hero() {
             </span>
           </div>
         </div>
-      </div>
-
-      {/* Scroll cue */}
-      <div
-        data-animate
-        className="hero-cue absolute bottom-7 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 text-cream-200/70 sm:flex"
-      >
-        <span className="text-[0.68rem] font-semibold uppercase tracking-[0.28em]">Scroll</span>
-        <ChevronDown className="h-5 w-5 animate-bounce" />
       </div>
     </section>
   );

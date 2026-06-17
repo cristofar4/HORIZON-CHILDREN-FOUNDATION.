@@ -25,6 +25,7 @@ export function StoryFeature({ story, index }: { story: Story; index: number }) 
                 alt={photo.alt}
                 seed={photo.seed}
                 tone={photo.tone}
+                figure={story.figure}
                 className="aspect-[4/5] w-full"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />

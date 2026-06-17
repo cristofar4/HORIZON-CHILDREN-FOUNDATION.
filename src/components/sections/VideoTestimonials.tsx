@@ -35,6 +35,7 @@ export function VideoTestimonials() {
                 alt={video.title}
                 seed={photos[video.photo].seed}
                 tone={photos[video.photo].tone}
+                figure={video.figure}
                 className="aspect-[4/5] w-full transition-transform duration-[1.4s] ease-horizon group-hover:scale-[1.05]"
                 sizes="(max-width: 768px) 100vw, 33vw"
                 overlay

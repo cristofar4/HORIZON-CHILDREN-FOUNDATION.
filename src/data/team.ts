@@ -1,5 +1,6 @@
 import type { IconKey } from '@/components/ui/iconMap';
 import type { PhotoKey } from '@/lib/images';
+import type { FigureKind } from '@/components/ui/Photo';
 
 export const mission =
   'To give every orphaned and vulnerable child a safe home, a complete education, healthcare, and the loving care they need to grow into their fullest potential.';
@@ -56,6 +57,7 @@ export type Leader = {
   name: string;
   role: string;
   photo: PhotoKey;
+  figure: FigureKind;
   bio: string;
 };
 
@@ -64,36 +66,42 @@ export const leadership: Leader[] = [
     name: 'Amara Okonkwo',
     role: 'Founder and Chief Executive',
     photo: 'teamLeader',
+    figure: 'female',
     bio: 'A former teacher who opened the first Horizon home with three children and a borrowed building. Fifteen years on, she still knows every child by name.',
   },
   {
     name: 'David Achterberg',
     role: 'Chief Operating Officer',
     photo: 'portrait2',
+    figure: 'male',
     bio: 'A logistics leader who left a corporate career to build the systems that let love scale with care and accountability.',
   },
   {
     name: 'Dr Helen Mensah',
     role: 'Director of Child Health',
     photo: 'caregiver',
+    figure: 'female',
     bio: 'A pediatrician overseeing our clinics and the health of every child, from first checkup to specialist care.',
   },
   {
     name: 'Esther Adeyemi',
     role: 'Director of Care',
     photo: 'portrait3',
+    figure: 'female',
     bio: 'A social worker who designed our family homes model and trains the caregivers who make each house a home.',
   },
   {
     name: 'Samuel Brooks',
     role: 'Director of Education',
     photo: 'graduation',
+    figure: 'male',
     bio: 'An educator leading our learning centers, scholarships, and the mentoring that keeps children reaching higher.',
   },
   {
     name: 'Lina Fortuna',
     role: 'Director of Partnerships',
     photo: 'community',
+    figure: 'female',
     bio: 'A community organizer connecting donors, companies, and local leaders around a shared promise to children.',
   },
 ];

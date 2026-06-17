@@ -37,6 +37,7 @@ export function Testimonials() {
                     alt={lead.name}
                     seed={photos[lead.photo].seed}
                     tone="horizon"
+                    figure={lead.figure}
                     className="h-12 w-12 rounded-full"
                     sizes="48px"
                   />

@@ -1,4 +1,5 @@
 import type { PhotoKey } from '@/lib/images';
+import type { FigureKind } from '@/components/ui/Photo';
 
 export type Story = {
   slug: string;
@@ -7,6 +8,7 @@ export type Story = {
   location: string;
   program: string;
   photo: PhotoKey;
+  figure: FigureKind;
   headline: string;
   before: string;
   after: string;
@@ -23,6 +25,7 @@ export const stories: Story[] = [
     location: 'Eastern Region',
     program: 'Education Support',
     photo: 'portrait1',
+    figure: 'female',
     headline: 'From a street corner to an engineering scholarship',
     before:
       'Amina was found sleeping near a market at the age of seven, selling water to survive and missing school entirely.',
@@ -45,6 +48,7 @@ export const stories: Story[] = [
     location: 'Northern Hills',
     program: 'Skills Development',
     photo: 'portrait2',
+    figure: 'male',
     headline: 'A workshop apprenticeship became a thriving business',
     before:
       'Orphaned at ten, Daniel drifted between relatives who could not care for him and left school to find work.',
@@ -67,6 +71,7 @@ export const stories: Story[] = [
     location: 'Lakeside',
     program: 'Healthcare Assistance',
     photo: 'portrait3',
+    figure: 'female',
     headline: 'The girl our clinic saved now saves others',
     before:
       'Grace came to us gravely ill and grieving, with no family able to care for her or fund her treatment.',
@@ -89,6 +94,7 @@ export type Testimonial = {
   name: string;
   role: string;
   photo?: PhotoKey;
+  figure?: FigureKind;
 };
 
 export const testimonials: Testimonial[] = [
@@ -98,6 +104,7 @@ export const testimonials: Testimonial[] = [
     name: 'Dr Helen Mensah',
     role: 'Pediatrician and program advisor',
     photo: 'teamLeader',
+    figure: 'female',
   },
   {
     quote:
@@ -118,10 +125,11 @@ export type VideoStory = {
   name: string;
   duration: string;
   photo: PhotoKey;
+  figure?: FigureKind;
 };
 
 export const videoStories: VideoStory[] = [
-  { title: 'The night the bus came', name: 'Amina speaks', duration: '3:42', photo: 'portrait1' },
-  { title: 'Building a future by hand', name: 'Daniel at work', duration: '4:18', photo: 'skills' },
-  { title: 'A caregiver remembers', name: 'Mama Esther', duration: '5:06', photo: 'caregiver' },
+  { title: 'The night the bus came', name: 'Amina speaks', duration: '3:42', photo: 'portrait1', figure: 'female' },
+  { title: 'Building a future by hand', name: 'Daniel at work', duration: '4:18', photo: 'portrait2', figure: 'male' },
+  { title: 'A caregiver remembers', name: 'Mama Esther', duration: '5:06', photo: 'caregiver', figure: 'female' },
 ];
