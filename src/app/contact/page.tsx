@@ -90,11 +90,12 @@ export default function ContactPage() {
           <div className="flex flex-col gap-6">
             <Reveal variant="scale" className="overflow-hidden rounded-4xl border border-cream-300/70 shadow-lift">
               <iframe
-                title="Map showing the Horizon Children Foundation office"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=-77.05%2C38.90%2C-76.99%2C38.93&layer=mapnik&marker=38.915%2C-77.02"
+                title="Google Map showing the Horizon Children Foundation office"
+                src="https://www.google.com/maps?q=Washington%2C%20District%20of%20Columbia&z=13&output=embed"
                 className="h-[320px] w-full lg:h-[420px]"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
               />
             </Reveal>
             <Reveal variant="up" className="rounded-3xl border border-cream-300/70 bg-cream-100/60 p-6">
