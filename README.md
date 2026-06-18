@@ -70,6 +70,10 @@ node scripts/render-story-videos.mjs
 
 To use your own footage instead, simply replace the files at the same paths. The players prefer the real video and fall back to a hand built animation if a file is ever missing.
 
+## People photos
+
+Portraits of the named people (success story alumni, leadership, testimonial) are real photographs stored in `public/people/`. They come from the CC0 licensed [royalty free user avatars](https://github.com/leonadler/royalty-free-user-avatars) set, chosen to match each person by gender. Replace any file at the same path to use a real photograph of your own people. A gender correct silhouette is painted underneath as the instant fallback.
+
 ## Notes
 
-Copy throughout the site is intentionally written without hyphens. Photographs load from a production image CDN when the network allows, and gracefully fall back to the branded scenes otherwise.
+Copy throughout the site is intentionally written without hyphens. Scene photographs load from a production image CDN when the network allows, and gracefully fall back to the branded scenes otherwise.

@@ -1,5 +1,5 @@
 import type { IconKey } from '@/components/ui/iconMap';
-import { personPhoto, type PhotoKey } from '@/lib/images';
+import type { PhotoKey } from '@/lib/images';
 import type { FigureKind } from '@/components/ui/Photo';
 
 export const mission =
@@ -67,7 +67,7 @@ export const leadership: Leader[] = [
     name: 'Amara Okonkwo',
     role: 'Founder and Chief Executive',
     photo: 'teamLeader',
-    portrait: personPhoto('female', 68),
+    portrait: '/people/amara.jpg',
     figure: 'female',
     bio: 'A former teacher who opened the first Horizon home with three children and a borrowed building. Fifteen years on, she still knows every child by name.',
   },
@@ -75,7 +75,7 @@ export const leadership: Leader[] = [
     name: 'David Achterberg',
     role: 'Chief Operating Officer',
     photo: 'portrait2',
-    portrait: personPhoto('male', 52),
+    portrait: '/people/david.jpg',
     figure: 'male',
     bio: 'A logistics leader who left a corporate career to build the systems that let love scale with care and accountability.',
   },
@@ -83,7 +83,7 @@ export const leadership: Leader[] = [
     name: 'Dr Helen Mensah',
     role: 'Director of Child Health',
     photo: 'caregiver',
-    portrait: personPhoto('female', 72),
+    portrait: '/people/helen.jpg',
     figure: 'female',
     bio: 'A pediatrician overseeing our clinics and the health of every child, from first checkup to specialist care.',
   },
@@ -91,7 +91,7 @@ export const leadership: Leader[] = [
     name: 'Esther Adeyemi',
     role: 'Director of Care',
     photo: 'portrait3',
-    portrait: personPhoto('female', 29),
+    portrait: '/people/esther.jpg',
     figure: 'female',
     bio: 'A social worker who designed our family homes model and trains the caregivers who make each house a home.',
   },
@@ -99,7 +99,7 @@ export const leadership: Leader[] = [
     name: 'Samuel Brooks',
     role: 'Director of Education',
     photo: 'graduation',
-    portrait: personPhoto('male', 75),
+    portrait: '/people/samuel.jpg',
     figure: 'male',
     bio: 'An educator leading our learning centers, scholarships, and the mentoring that keeps children reaching higher.',
   },
@@ -107,7 +107,7 @@ export const leadership: Leader[] = [
     name: 'Lina Fortuna',
     role: 'Director of Partnerships',
     photo: 'community',
-    portrait: personPhoto('female', 90),
+    portrait: '/people/lina.jpg',
     figure: 'female',
     bio: 'A community organizer connecting donors, companies, and local leaders around a shared promise to children.',
   },

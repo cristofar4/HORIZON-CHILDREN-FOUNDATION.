@@ -1,4 +1,4 @@
-import { personPhoto, type PhotoKey } from '@/lib/images';
+import type { PhotoKey } from '@/lib/images';
 import type { FigureKind } from '@/components/ui/Photo';
 
 export type Story = {
@@ -26,7 +26,7 @@ export const stories: Story[] = [
     location: 'Eastern Region',
     program: 'Education Support',
     photo: 'portrait1',
-    portrait: personPhoto('female', 65),
+    portrait: '/people/amina.jpg',
     figure: 'female',
     headline: 'From a street corner to an engineering scholarship',
     before:
@@ -50,7 +50,7 @@ export const stories: Story[] = [
     location: 'Northern Hills',
     program: 'Skills Development',
     photo: 'portrait2',
-    portrait: personPhoto('male', 32),
+    portrait: '/people/daniel.jpg',
     figure: 'male',
     headline: 'A workshop apprenticeship became a thriving business',
     before:
@@ -74,7 +74,7 @@ export const stories: Story[] = [
     location: 'Lakeside',
     program: 'Healthcare Assistance',
     photo: 'portrait3',
-    portrait: personPhoto('female', 44),
+    portrait: '/people/grace.jpg',
     figure: 'female',
     headline: 'The girl our clinic saved now saves others',
     before:
@@ -109,7 +109,7 @@ export const testimonials: Testimonial[] = [
     name: 'Dr Helen Mensah',
     role: 'Pediatrician and program advisor',
     photo: 'teamLeader',
-    portrait: personPhoto('female', 72),
+    portrait: '/people/helen.jpg',
     figure: 'female',
   },
   {
