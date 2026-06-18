@@ -171,7 +171,9 @@ export function Photo({
     >
       <GenerativeScene seed={seed} tone={tone} figure={figure} />
 
-      {src && !failed && (
+      {/* When a figure is specified the person's gender matters, so we always show
+          the controlled silhouette rather than an unverifiable remote photograph. */}
+      {src && !failed && !figure && (
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={src}

@@ -44,7 +44,6 @@ export function VideoTestimonials() {
                 alt={`${video.name} story film`}
                 seed={video.seed}
                 tone="dawn"
-                figure={video.figure}
                 className="aspect-video w-full transition-transform duration-[1.4s] ease-horizon group-hover:scale-[1.04]"
                 sizes="(max-width: 768px) 100vw, 33vw"
               />
