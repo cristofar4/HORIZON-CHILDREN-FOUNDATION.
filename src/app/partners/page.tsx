@@ -29,7 +29,6 @@ export default function PartnersPage() {
         eyebrow="Partners"
         title="Great things are never built alone"
         intro="Behind every child we reach stands a community of companies, foundations, and changemakers. Together we turn generosity into lasting, measurable good."
-        crumbs={[{ label: 'Home', href: '/' }, { label: 'Partners' }]}
       />
 
       {/* Stats */}

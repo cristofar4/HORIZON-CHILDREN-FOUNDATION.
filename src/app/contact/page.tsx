@@ -32,7 +32,6 @@ export default function ContactPage() {
         eyebrow="Contact"
         title="We would love to hear from you"
         intro="A question, an idea, an offer to help. Whatever brings you here, a real person on our team is ready to listen and respond."
-        crumbs={[{ label: 'Home', href: '/' }, { label: 'Contact' }]}
       />
 
       {/* Contact cards */}

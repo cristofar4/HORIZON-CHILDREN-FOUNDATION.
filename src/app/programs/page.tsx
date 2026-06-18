@@ -20,7 +20,6 @@ export default function ProgramsPage() {
         eyebrow="Children and programs"
         title="Complete care for the whole child"
         intro="A childhood cannot be rescued in pieces. Our six programs work as one, meeting each child where they are and carrying them all the way to a future they choose."
-        crumbs={[{ label: 'Home', href: '/' }, { label: 'Programs' }]}
       />
 
       {/* Quick nav */}

@@ -121,15 +121,45 @@ export const testimonials: Testimonial[] = [
 ];
 
 export type VideoStory = {
+  slug: string;
   title: string;
   name: string;
   duration: string;
-  photo: PhotoKey;
-  figure?: FigureKind;
+  video: string;
+  poster: string;
+  seed: string;
+  figure: FigureKind;
 };
 
 export const videoStories: VideoStory[] = [
-  { title: 'The night the bus came', name: 'Amina speaks', duration: '3:42', photo: 'portrait1', figure: 'female' },
-  { title: 'Building a future by hand', name: 'Daniel at work', duration: '4:18', photo: 'portrait2', figure: 'male' },
-  { title: 'A caregiver remembers', name: 'Mama Esther', duration: '5:06', photo: 'caregiver', figure: 'female' },
+  {
+    slug: 'amina-the-engineer',
+    title: 'From the street to engineering',
+    name: 'Amina, 19',
+    duration: '0:12',
+    video: '/stories/amina-the-engineer.mp4',
+    poster: '/stories/amina-the-engineer.jpg',
+    seed: 'video-amina',
+    figure: 'female',
+  },
+  {
+    slug: 'daniel-the-carpenter',
+    title: 'A future built by hand',
+    name: 'Daniel, 21',
+    duration: '0:12',
+    video: '/stories/daniel-the-carpenter.mp4',
+    poster: '/stories/daniel-the-carpenter.jpg',
+    seed: 'video-daniel',
+    figure: 'male',
+  },
+  {
+    slug: 'grace-the-nurse',
+    title: 'The girl our clinic saved',
+    name: 'Grace, 23',
+    duration: '0:12',
+    video: '/stories/grace-the-nurse.mp4',
+    poster: '/stories/grace-the-nurse.jpg',
+    seed: 'video-grace',
+    figure: 'female',
+  },
 ];

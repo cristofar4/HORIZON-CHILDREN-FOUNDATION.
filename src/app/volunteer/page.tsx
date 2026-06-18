@@ -25,7 +25,6 @@ export default function VolunteerPage() {
         eyebrow="Volunteer"
         title="Give your time, change a lifetime"
         intro="Money builds homes, but people make them warm. Whether you have an hour a week or a rare professional skill, there is a place for you here."
-        crumbs={[{ label: 'Home', href: '/' }, { label: 'Volunteer' }]}
       />
 
       {/* Roles */}

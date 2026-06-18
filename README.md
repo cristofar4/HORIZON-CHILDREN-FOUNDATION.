@@ -51,6 +51,25 @@ src/
 - **Accessibility and performance.** Semantic landmarks, a skip link, keyboard friendly menus and lightbox, reduced motion support, responsive layouts, and statically generated pages.
 - **Forms** for donations, volunteering, and contact are fully built and validated with realistic, simulated submission flows. They are structured so a payment provider and a back end can be connected in production.
 
+## Video
+
+The site ships real, self contained video, so nothing depends on an external host:
+
+- `public/hero.mp4` is the cinematic hero film (the child, the bus, and dawn breaking), rendered to about 650 KB.
+- `public/explainer.mp4` is the ninety second film that explains what the foundation does, played from the home page.
+- `public/stories/*.mp4` are short story films for each child in Success Stories.
+
+These were generated from SVG frames with the scripts in `scripts/`. To regenerate them, install the dev only tools and run the scripts:
+
+```bash
+npm install --no-save sharp ffmpeg-static
+node scripts/render-hero-video.mjs
+node scripts/render-explainer-video.mjs
+node scripts/render-story-videos.mjs
+```
+
+To use your own footage instead, simply replace the files at the same paths. The players prefer the real video and fall back to a hand built animation if a file is ever missing.
+
 ## Notes
 
 Copy throughout the site is intentionally written without hyphens. Photographs load from a production image CDN when the network allows, and gracefully fall back to the branded scenes otherwise.

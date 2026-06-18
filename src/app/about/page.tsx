@@ -24,7 +24,6 @@ export default function AboutPage() {
         eyebrow="About us"
         title="A foundation built on love and accountability"
         intro="We exist to give orphaned and vulnerable children everything a thriving childhood requires. Here is who we are, what we believe, and how we hold ourselves to the highest standard."
-        crumbs={[{ label: 'Home', href: '/' }, { label: 'About Us' }]}
       />
 
       {/* Mission and Vision */}

@@ -9,17 +9,12 @@ import { Heart, ArrowRight, Play } from '@/components/ui/icons';
 import { cn } from '@/lib/utils';
 
 /**
- * Real cinematic footage for the hero.
- *
- * The first source is a local file you can drop in at public/hero.mp4 to use
- * your own footage. If it is absent, the browser falls back to the relevant
- * stock clip, and if no video can play at all, the hand built scene below shows
- * instead, so the hero is always cinematic and never breaks.
+ * The hero plays a real, self contained film rendered to public/hero.mp4 (the
+ * Horizon story: a child under a street light, the bus that carries her home,
+ * and dawn breaking). Drop in your own footage at the same path to replace it.
+ * If the video cannot play, the hand built scene below shows instead.
  */
-const VIDEO_SOURCES = [
-  '/hero.mp4',
-  'https://assets.mixkit.co/videos/preview/mixkit-little-girl-running-through-a-field-of-flowers-4565-large.mp4',
-];
+const VIDEO_SOURCES = ['/hero.mp4'];
 
 export function Hero() {
   const overlay = useRef<HTMLDivElement>(null);
@@ -70,7 +65,7 @@ export function Hero() {
       {allowVideo && (
         <video
           className={cn(
-            'absolute inset-0 z-[1] h-full w-full object-cover transition-opacity duration-[1500ms] ease-horizon',
+            'absolute inset-0 z-[1] h-full w-full object-cover object-center transition-opacity duration-[1500ms] ease-horizon',
             videoActive ? 'opacity-100' : 'opacity-0',
           )}
           autoPlay
@@ -78,6 +73,7 @@ export function Hero() {
           loop
           playsInline
           preload="auto"
+          poster="/hero-poster.jpg"
           onCanPlay={() => setVideoActive(true)}
           onError={() => setVideoActive(false)}
           aria-hidden="true"

@@ -2,6 +2,7 @@ import { Hero } from '@/components/home/Hero';
 import { PartnersMarquee } from '@/components/sections/PartnersMarquee';
 import { StatsBand } from '@/components/sections/StatsBand';
 import { MissionIntro } from '@/components/home/MissionIntro';
+import { StoryFilm } from '@/components/home/StoryFilm';
 import { ProgramsGrid } from '@/components/sections/ProgramsGrid';
 import { ImpactTimeline } from '@/components/home/ImpactTimeline';
 import { FeaturedStories } from '@/components/home/FeaturedStories';
@@ -16,6 +17,7 @@ export default function HomePage() {
       <PartnersMarquee />
       <StatsBand />
       <MissionIntro />
+      <StoryFilm />
       <ProgramsGrid limit={6} />
       <ImpactTimeline />
       <FeaturedStories />

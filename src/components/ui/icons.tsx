@@ -119,6 +119,27 @@ export const Play = (p: IconProps) => (
   </Base>
 );
 
+export const Pause = (p: IconProps) => (
+  <Base {...p}>
+    <rect x="7" y="5.5" width="3.4" height="13" rx="1.2" fill="currentColor" stroke="none" />
+    <rect x="13.6" y="5.5" width="3.4" height="13" rx="1.2" fill="currentColor" stroke="none" />
+  </Base>
+);
+
+export const Replay = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M4.5 9A8 8 0 1 1 4 13.5" />
+    <path d="M4.5 4.5V9H9" />
+  </Base>
+);
+
+export const Volume = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M4 9.5h3l4-3.5v12l-4-3.5H4Z" />
+    <path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a8 8 0 0 1 0 11" />
+  </Base>
+);
+
 export const Plus = (p: IconProps) => (
   <Base {...p}>
     <path d="M12 5v14M5 12h14" />

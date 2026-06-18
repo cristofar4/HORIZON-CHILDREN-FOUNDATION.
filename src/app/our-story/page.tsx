@@ -66,7 +66,6 @@ export default function OurStoryPage() {
         eyebrow="Our story"
         title="It started with one child who would not be passed by"
         intro="Every great foundation has an origin. Ours begins on a quiet street, late at night, with a teacher and a girl who simply needed someone to stop."
-        crumbs={[{ label: 'Home', href: '/' }, { label: 'Our Story' }]}
       />
 
       {/* Chapters */}

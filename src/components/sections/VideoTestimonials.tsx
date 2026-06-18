@@ -1,16 +1,25 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { videoStories } from '@/data/stories';
-import { photos } from '@/lib/images';
+import { videoStories, type VideoStory } from '@/data/stories';
 import { Photo } from '@/components/ui/Photo';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Reveal } from '@/components/ui/Reveal';
 import { Play, Close, Clock } from '@/components/ui/icons';
 
 export function VideoTestimonials() {
-  const [active, setActive] = useState<number | null>(null);
+  const [active, setActive] = useState<VideoStory | null>(null);
+
+  useEffect(() => {
+    document.body.style.overflow = active ? 'hidden' : '';
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setActive(null);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, [active]);
 
   return (
     <section className="bg-cream-100/70 py-20 sm:py-28">
@@ -18,28 +27,28 @@ export function VideoTestimonials() {
         <SectionHeading
           align="center"
           eyebrow="In their own words"
-          title="Video testimonials"
-          intro="Sometimes a story is best told by the person who lived it. Press play and meet them."
+          title="Watch their stories"
+          intro="Press play to hear how a single rescue became a whole life. Each short film follows one child from where they began to where they are now."
         />
 
         <Reveal stagger={0.1} className="mt-14 grid gap-6 md:grid-cols-3">
-          {videoStories.map((video, i) => (
+          {videoStories.map((video) => (
             <button
-              key={video.title}
+              key={video.slug}
               type="button"
-              onClick={() => setActive(i)}
-              className="group relative overflow-hidden rounded-4xl text-left shadow-soft transition-all duration-500 ease-horizon hover:-translate-y-1.5 hover:shadow-lift"
+              onClick={() => setActive(video)}
+              className="group relative overflow-hidden rounded-3xl text-left shadow-soft transition-all duration-500 ease-horizon hover:-translate-y-1.5 hover:shadow-lift"
             >
               <Photo
-                src={photos[video.photo].src}
-                alt={video.title}
-                seed={photos[video.photo].seed}
-                tone={photos[video.photo].tone}
+                src={video.poster}
+                alt={`${video.name} story film`}
+                seed={video.seed}
+                tone="dawn"
                 figure={video.figure}
-                className="aspect-[4/5] w-full transition-transform duration-[1.4s] ease-horizon group-hover:scale-[1.05]"
+                className="aspect-video w-full transition-transform duration-[1.4s] ease-horizon group-hover:scale-[1.04]"
                 sizes="(max-width: 768px) 100vw, 33vw"
-                overlay
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-transparent" />
               <span className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-cream-50/95 text-horizon-700 shadow-lift transition-transform duration-500 group-hover:scale-110">
                 <Play className="ml-1 h-6 w-6" />
               </span>
@@ -59,55 +68,45 @@ export function VideoTestimonials() {
       </div>
 
       <AnimatePresence>
-        {active !== null && (
+        {active && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setActive(null)}
-            className="fixed inset-0 z-[120] flex items-center justify-center bg-ink/80 p-5 backdrop-blur-sm"
+            className="fixed inset-0 z-[120] flex items-center justify-center bg-ink/90 p-4 backdrop-blur-sm sm:p-8"
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
+              initial={{ scale: 0.94, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
+              exit={{ scale: 0.94, opacity: 0 }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-3xl overflow-hidden rounded-3xl bg-horizon-950 shadow-lift"
+              className="relative w-full max-w-4xl overflow-hidden rounded-3xl bg-black shadow-lift"
             >
-              <div className="relative aspect-video">
-                <Photo
-                  src={photos[videoStories[active].photo].src}
-                  alt={videoStories[active].title}
-                  seed={photos[videoStories[active].photo].seed}
-                  tone={photos[videoStories[active].photo].tone}
-                  className="h-full w-full"
-                  sizes="100vw"
-                  overlay
-                />
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-cream-50">
-                  <span className="flex h-16 w-16 items-center justify-center rounded-full bg-cream-50/95 text-horizon-700">
-                    <Play className="ml-1 h-6 w-6" />
-                  </span>
-                  <p className="mt-4 max-w-sm px-6 text-sm text-cream-100/80">
-                    Video stories are shared with the consent of each child and family to protect their
-                    dignity and safety.
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center justify-between gap-4 p-5">
+              <button
+                type="button"
+                onClick={() => setActive(null)}
+                aria-label="Close video"
+                className="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-ink/50 text-cream-50 backdrop-blur transition-colors hover:bg-ink/70"
+              >
+                <Close className="h-5 w-5" />
+              </button>
+              <video
+                className="aspect-video w-full bg-black"
+                src={active.video}
+                poster={active.poster}
+                controls
+                autoPlay
+                muted
+                playsInline
+              />
+              <div className="flex items-center justify-between gap-4 bg-horizon-950 px-5 py-4">
                 <div>
-                  <h3 className="font-serif text-lg text-cream-50">{videoStories[active].title}</h3>
-                  <p className="text-sm text-cream-200/70">{videoStories[active].name}</p>
+                  <h3 className="font-serif text-lg text-cream-50">{active.title}</h3>
+                  <p className="text-sm text-cream-200/70">{active.name}</p>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => setActive(null)}
-                  aria-label="Close"
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-cream-50/10 text-cream-50 transition-colors hover:bg-cream-50/20"
-                >
-                  <Close className="h-5 w-5" />
-                </button>
+                <span className="text-xs text-cream-200/60">A Horizon story film</span>
               </div>
             </motion.div>
           </motion.div>

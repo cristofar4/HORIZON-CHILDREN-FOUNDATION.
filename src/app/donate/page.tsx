@@ -22,7 +22,6 @@ export default function DonatePage() {
         eyebrow="Donate"
         title="Turn compassion into a warm bed tonight"
         intro="Every gift is a hand reaching into the dark. Choose how you want to help, watch your impact add up in real time, and give with complete confidence."
-        crumbs={[{ label: 'Home', href: '/' }, { label: 'Donate' }]}
       />
 
       <section id="donate-form" className="scroll-mt-24 py-12 sm:py-16">

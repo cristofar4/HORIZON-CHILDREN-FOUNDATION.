@@ -28,7 +28,6 @@ export default function SuccessStoriesPage() {
         eyebrow="Success stories"
         title="Lives transformed, in their own words"
         intro="Statistics open the door, but stories walk you through it. These are children who arrived with nothing and are building everything."
-        crumbs={[{ label: 'Home', href: '/' }, { label: 'Success Stories' }]}
       />
 
       {/* Proof band */}

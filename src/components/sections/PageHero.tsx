@@ -1,15 +1,11 @@
-import Link from 'next/link';
 import { TextReveal } from '@/components/ui/TextReveal';
 import { Reveal } from '@/components/ui/Reveal';
 import { cn } from '@/lib/utils';
-
-type Crumb = { label: string; href?: string };
 
 type PageHeroProps = {
   eyebrow: string;
   title: string;
   intro?: string;
-  crumbs?: Crumb[];
   align?: 'left' | 'center';
   children?: React.ReactNode;
 };
@@ -19,7 +15,6 @@ export function PageHero({
   eyebrow,
   title,
   intro,
-  crumbs,
   align = 'left',
   children,
 }: PageHeroProps) {
@@ -45,27 +40,6 @@ export function PageHero({
             align === 'center' ? 'mx-auto max-w-3xl items-center text-center' : 'max-w-3xl',
           )}
         >
-          {crumbs && (
-            <Reveal variant="fade">
-              <nav aria-label="Breadcrumb">
-                <ol className="flex flex-wrap items-center gap-2 text-sm text-ink-muted">
-                  {crumbs.map((c, i) => (
-                    <li key={c.label} className="flex items-center gap-2">
-                      {c.href ? (
-                        <Link href={c.href} className="transition-colors hover:text-horizon-700">
-                          {c.label}
-                        </Link>
-                      ) : (
-                        <span className="text-ink-soft">{c.label}</span>
-                      )}
-                      {i < crumbs.length - 1 && <span className="text-cream-300">/</span>}
-                    </li>
-                  ))}
-                </ol>
-              </nav>
-            </Reveal>
-          )}
-
           <Reveal variant="fade">
             <span className="eyebrow">{eyebrow}</span>
           </Reveal>

@@ -16,7 +16,6 @@ export default function GalleryPage() {
         eyebrow="Gallery"
         title="Moments worth a thousand donations"
         intro="Every image here is a small piece of a larger promise kept. Filter by what matters to you, and step inside the life of a Horizon home."
-        crumbs={[{ label: 'Home', href: '/' }, { label: 'Gallery' }]}
       />
       <GalleryMasonry />
       <CTASection
