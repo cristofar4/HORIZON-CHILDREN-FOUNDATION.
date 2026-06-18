@@ -17,8 +17,8 @@ export function StoryCard({ story, className }: { story: Story; className?: stri
     >
       <div className="relative aspect-[5/6] overflow-hidden">
         <Photo
-          src={photo.src}
-          alt={photo.alt}
+          src={story.portrait}
+          alt={`${story.name}, ${story.age}, from ${story.location}`}
           seed={photo.seed}
           tone={photo.tone}
           figure={story.figure}

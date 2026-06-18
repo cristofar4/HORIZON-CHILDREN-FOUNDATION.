@@ -22,6 +22,15 @@ function u(id: string, w = 1400): string {
   return `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
 }
 
+/**
+ * A real portrait photograph for a named person. The gender is guaranteed by the
+ * source path, so a portrait always matches the name it accompanies. Swap these
+ * for your own photographs by replacing the URL.
+ */
+export function personPhoto(gender: 'female' | 'male', n: number): string {
+  return `https://randomuser.me/api/portraits/${gender === 'female' ? 'women' : 'men'}/${n}.jpg`;
+}
+
 export const photos = {
   heroChild: {
     src: u('photo-1503454537195-1dcabb73ffb9'),

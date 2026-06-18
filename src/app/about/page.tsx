@@ -122,7 +122,7 @@ export default function AboutPage() {
               >
                 <div className="aspect-[4/5] overflow-hidden">
                   <Photo
-                    src={photos[leader.photo].src}
+                    src={leader.portrait}
                     alt={`Portrait of ${leader.name}`}
                     seed={photos[leader.photo].seed}
                     tone={photos[leader.photo].tone}

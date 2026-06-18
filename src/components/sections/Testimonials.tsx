@@ -33,7 +33,7 @@ export function Testimonials() {
               <figcaption className="mt-8 flex items-center gap-4">
                 {lead.photo && (
                   <Photo
-                    src={photos[lead.photo].src}
+                    src={lead.portrait}
                     alt={lead.name}
                     seed={photos[lead.photo].seed}
                     tone="horizon"

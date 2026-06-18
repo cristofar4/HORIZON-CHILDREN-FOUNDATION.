@@ -21,8 +21,8 @@ export function StoryFeature({ story, index }: { story: Story; index: number }) 
           <div className={cn('relative', flipped && 'lg:order-2')}>
             <Reveal variant="scale" className="overflow-hidden rounded-[2rem] shadow-lift">
               <Photo
-                src={photo.src}
-                alt={photo.alt}
+                src={story.portrait}
+                alt={`${story.name}, ${story.age}, from ${story.location}`}
                 seed={photo.seed}
                 tone={photo.tone}
                 figure={story.figure}
